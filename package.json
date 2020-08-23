@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --watch backend --exec babel-node backend/server.js",
+    "start:dev": "nodemon --watch backend --exec babel-node backend/server.js",
+    "start": "node backend/server.js",
     "build": "rm -rf dist && babel backend -d dist",
     "heroku-postbuild": "npm run build && cd flipdeal && npm install && npm run build"
   },

@@ -1,6 +1,6 @@
 {
   "http_only": true,
-  "root": "dist/",
+  "root": ".",
   "routes": {
     "/**": "index.html"
   }

@@ -42,12 +42,10 @@ app.use("/uploads", express.static(path.join(__dirname, "/../uploads")));
 //   res.sendFile(path.join(`${__dirname}/../flipdeal/build/index.html`));
 // });
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("flipdeal-frontend/build"));
+  app.use(express.static("flipdeal/build"));
   app.use(
     "*",
-    express.static(
-      path.join(__dirname, "flipdeal-frontend", "build", "index.html")
-    )
+    express.static(path.join(__dirname, "flipdeal", "build", "index.html"))
   );
 }
 

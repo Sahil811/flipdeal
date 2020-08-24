@@ -10,7 +10,7 @@ router.post("/signin", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-    console.log(getToken(signinUser));
+
     if (signinUser) {
       res.send({
         _id: signinUser._id,

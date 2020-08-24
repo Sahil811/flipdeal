@@ -1,3 +1,3 @@
-[submodule "flipdeal-frontend"]
-	path = flipdeal-frontend
+[submodule "flipdeal"]
+	path = flipdeal
 	url = https://github.com/Sahil811/flipdeal-frontend

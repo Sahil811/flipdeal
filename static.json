@@ -1,0 +1,7 @@
+{
+  "http_only": true,
+  "root": ".",
+  "routes": {
+    "/**": "index.html"
+  }
+}

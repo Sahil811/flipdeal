@@ -1,0 +1,3 @@
+[submodule "flipdeal-frontend"]
+	path = flipdeal-frontend
+	url = https://github.com/Sahil811/flipdeal-frontend

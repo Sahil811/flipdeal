@@ -34,15 +34,20 @@ app.get("/api/config/paypal", (req, res) => {
 });
 app.use("/uploads", express.static(path.join(__dirname, "/../uploads")));
 
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "flipdeal", "build", "index.html"));
+// });
 //app.use(express.static(path.join(__dirname, "/../flipdeal/build")));
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(`${__dirname}/../flipdeal/build/index.html`));
 // });
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("flipdeal/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "flipdeal", "build", "index.html"));
-  });
+  //app.use(express.static("/flipdeal/build"));
+  app.use("/", express.static(path.join(__dirname, "/flipdeal/build")));
+  app.use(
+    "*",
+    express.static(path.join(__dirname, "flipdeal", "build", "index.html"))
+  );
 }
 
 const PORT = process.env.PORT || 8000;

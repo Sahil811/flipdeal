@@ -8,6 +8,9 @@ node_modules
 uploads/*.jpg
 uploads/*.png
 
+*.env
+.cache/
+
 /.pnp
 .pnp.js
 

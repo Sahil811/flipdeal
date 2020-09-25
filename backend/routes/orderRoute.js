@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", isAuth, async (req, res) => {
   const orders = await Order.find({}).populate("user");
-  res.send(orders);
+  console.log(orders);
 });
 
 router.get("/mine", isAuth, async (req, res) => {
@@ -15,7 +15,13 @@ router.get("/mine", isAuth, async (req, res) => {
 });
 
 router.get("/:id", isAuth, async (req, res) => {
-  const order = await Order.findOne({ _id: req.params.id });
+  const order = await Order.findOne({ _id: req.params.id }).populate({
+    path: "orderItems",
+    populate: {
+      path: "image",
+    },
+  });
+
   if (order) {
     res.send(order);
   } else {

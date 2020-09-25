@@ -37,14 +37,16 @@ router.get("/", async (req, res) => {
       : { price: -1 }
     : { _id: -1 };
 
-  const products = await Product.find({ ...category, ...searchKeyword }).sort(
-    sortOrder
-  );
+  const products = await Product.find({ ...category, ...searchKeyword })
+    .sort(sortOrder)
+    .populate("image");
   res.send(products);
 });
 
 router.get("/:id", async (req, res) => {
-  const product = await Product.findOne({ _id: req.params.id });
+  const product = await Product.findOne({ _id: req.params.id }).populate(
+    "image"
+  );
   if (product) {
     res.send(product);
   } else {
@@ -75,7 +77,7 @@ router.post("/:id/reviews", isAuth, async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const products = await Product.find({});
+  const products = await Product.find({}).populate("image");
   if (products) {
     res.send(products);
   } else {
@@ -122,6 +124,10 @@ router.patch("/:id", isAuth, isAdmin, async (req, res) => {
   try {
     const product = await Product.findOne({ _id: productId });
 
+    if (!req.body.image) {
+      req.body.image = product.image;
+    }
+
     if (product) {
       product.name = req.body.name;
       product.price = req.body.price;
@@ -130,7 +136,7 @@ router.patch("/:id", isAuth, isAdmin, async (req, res) => {
       product.category = req.body.category;
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
-      const updatedProduct = await product.save();
+      const updatedProduct = await (await product.save()).populate("image");
       console.log(updatedProduct);
       if (updatedProduct) {
         return res

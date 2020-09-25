@@ -3,7 +3,7 @@ export default {
     {
       _id: "1",
       name: "Slim-Shirt",
-      category: "Shirt",
+      category: "Shirts",
       image: "/images/Slim-Fit-Street.jpg.webp",
       price: 60,
       brand: " faststreet",

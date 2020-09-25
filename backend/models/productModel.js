@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  image: { type: String, required: true },
+  image: { type: mongoose.Schema.Types.ObjectId, ref: "Image", required: true },
   brand: { type: String, required: true },
   price: { type: Number, default: 0, required: true },
   category: { type: String, required: true },
@@ -11,6 +11,10 @@ const productSchema = new mongoose.Schema({
   rating: { type: Number, default: 0, required: true },
   numReviews: { type: Number, default: 0, required: true },
 });
+
+// productSchema.find().populate({
+//   path: "image",
+// });
 
 const productModel = mongoose.model("Product", productSchema);
 

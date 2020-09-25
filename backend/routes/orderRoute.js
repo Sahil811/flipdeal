@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get("/", isAuth, async (req, res) => {
   const orders = await Order.find({}).populate("user");
+  res.send(orders);
 });
 
 router.get("/mine", isAuth, async (req, res) => {
